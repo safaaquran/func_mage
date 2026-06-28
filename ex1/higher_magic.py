@@ -2,7 +2,7 @@ from typing import Callable
 
 
 def fireball(target: str, power: int) -> str:
-    return f"fireball hits {target}"
+    return f"fireball hits {target}, with {power} power"
 
 
 def heal(target: str, power: int) -> str:
@@ -23,6 +23,7 @@ def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
         return base_spell(target, power * multiplier)
     return amplifier
 
+
 #def conditional_caster(condition: Callable, spell: Callable) -> Callable:
 
 
@@ -39,6 +40,8 @@ if __name__ == "__main__":
     print(result[0], end=", ")
     print(result[1])
     print("Testing power amplifier... ")
-    mega_fireball = power_amplifier(fireball, 3)
-    mf = mega_fireball(test_target, 10)
-    print(f"Original: ")
+    power: int = 3
+    mega_fireball = power_amplifier(fireball, power)
+    print(f"Orginal: {power}", end=" ")
+    print(f"Amplified {mega_fireball(test_target, 10)}")
+    
