@@ -24,10 +24,27 @@ def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
     return amplifier
 
 
-#def conditional_caster(condition: Callable, spell: Callable) -> Callable:
+def conditional_caster(condition: Callable, spell: Callable) -> Callable:
+    def string_returner() -> str:
+        return "Spell fizzled"
 
 
-#def spell_sequence(spells:	list[Callable]) -> Callable:
+    def new_spell(target: str, power: int) -> str:
+        f = condition
+        if f:
+            return spell(target, power)
+        else:
+            return string_returner()
+    return new_spell
+
+
+def spell_sequence(spells:	list[Callable]) -> Callable:
+    def spells_list(target: str, power: int) ->list[str]:
+        spellsResults :list[str] = []
+        for spell in spells:
+            spellsResults.append(spell(target, power))
+        return spellsResults
+    return spells_list
 
 
 if __name__ == "__main__":
@@ -44,4 +61,12 @@ if __name__ == "__main__":
     mega_fireball = power_amplifier(fireball, power)
     print(f"Orginal: {power}", end=" ")
     print(f"Amplified {mega_fireball(test_target, 10)}")
-    
+    def condition(age: int) -> bool:
+        return (age > 0)
+    print("\ntesting conditional caster...")
+    cc = conditional_caster(condition(0), fireball)
+    print(cc(test_target, 2))
+    print("\ntesting spell sequence...")
+    spells: list[Callable] = [heal, fireball]
+    ss = spell_sequence(spells)
+    print(ss(test_target, 3))
