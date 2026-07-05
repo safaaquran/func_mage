@@ -27,11 +27,11 @@ def enchantment_factory(enchantment_type: str) -> Callable:
 
 
 def memory_vault() -> dict[str, Callable]:
-    dictionary: dict = {}
+    dictionary: dict = {"safaa": "fail"}
 
     def store(key: str, value: int) -> str:
-        nonlocal dictionary
         dictionary[key] = value
+
         return f"Store '{key}' = {value}"
 
     def recall(key: str) -> str:
@@ -70,6 +70,6 @@ print(ef(items_to_enchant[1]))
 
 print("\nTesting memory vault... ")
 mv = memory_vault()
-print(mv["Store"]("secret", 42))
+print(mv["Store"]("safaa", 42))
 print(mv["Recall"]("secret"))
 print(mv["Recall"]("safaa"))

@@ -82,7 +82,7 @@ print(pe["ice"](target="baby dragon"))
 
 print("\nTesting memoized fibonacci...")
 print("Fib(0):", memoized_fibonacci(0))
-print("Fib(1):", memoized_fibonacci(1))
+print("Fib(1):", memoized_fibonacci(-1))
 print("Fib(10):", memoized_fibonacci(10))
 print("Fib(15):", memoized_fibonacci(15))
 # print(memoized_fibonacci.cache_info())

@@ -29,8 +29,7 @@ def conditional_caster(condition: Callable, spell: Callable) -> Callable:
         return "Spell fizzled"
 
     def new_spell(target: str, power: int) -> str:
-        f = condition
-        if f:
+        if condition("dragon", 0):
             return spell(target, power)
         else:
             return string_returner()
@@ -61,12 +60,12 @@ if __name__ == "__main__":
     print(f"Orginal: {power}", end=" ")
     print(f"Amplified {mega_fireball(test_target, 10)}")
 
-    def condition(age: int) -> bool:
-        return (age > 0)
+    def condition(target: str, power: int) -> bool:
+        return (power > 0)
     print("\ntesting conditional caster...")
-    cc = conditional_caster(condition(0), fireball)
+    cc = conditional_caster(condition, fireball)
     print(cc(test_target, 2))
     print("\ntesting spell sequence...")
-    spells: list[Callable] = [heal, fireball]
+    spells: list[Callable] = [heal, fireball, heal]
     ss = spell_sequence(spells)
     print(ss(test_target, 3))

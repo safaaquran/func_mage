@@ -52,6 +52,7 @@ if __name__ == "__main__":
         print(f"{artifact['name']} ({artifact['power']}power)", end=" ")
         if i != len(artifact) - 1:
             print("comes before", end=" ")
+
     print("\nTesting spell transformer...")
     spell: list[str] = spell_transformer(spells)
     for stared in spell:
