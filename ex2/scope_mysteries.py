@@ -53,3 +53,4 @@ ef = enchantment_factory(enchantment_types[2])
 print(ef(items_to_enchant[1]))
 
 print("\nTesting memory vault... ")
+print()
