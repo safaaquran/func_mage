@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 
 def mage_counter() -> Callable:
@@ -25,7 +25,23 @@ def enchantment_factory(enchantment_type: str) -> Callable:
         return enchantedDescription
     return enchantment
 
-#def memory_vault() -> dict[str, Callable]:
+
+def memory_vault() -> dict[str, Callable]:
+    dictionary: dict = {}
+
+    def store(key: str, value: int) -> str:
+        nonlocal dictionary
+        dictionary[key] = value
+        return f"Store '{key}' = {value}"
+
+    def recall(key: str) -> str:
+        nonlocal dictionary
+        if key in dictionary:
+            return f"Recall '{key}': {dictionary[key]}"
+        else:
+            return ("Recall ’unknown’: Memory not found")
+    return {"Store": store, "Recall": recall}
+
 
 enchantment_types = ['Earthen', 'Flaming', 'Radiant']
 items_to_enchant = ['Amulet', 'Ring', 'Shield', 'Sword']
@@ -53,4 +69,7 @@ ef = enchantment_factory(enchantment_types[2])
 print(ef(items_to_enchant[1]))
 
 print("\nTesting memory vault... ")
-print()
+mv = memory_vault()
+print(mv["Store"]("secret", 42))
+print(mv["Recall"]("secret"))
+print(mv["Recall"]("safaa"))

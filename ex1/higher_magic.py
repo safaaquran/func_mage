@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 
 def fireball(target: str, power: int) -> str:
@@ -28,7 +28,6 @@ def conditional_caster(condition: Callable, spell: Callable) -> Callable:
     def string_returner() -> str:
         return "Spell fizzled"
 
-
     def new_spell(target: str, power: int) -> str:
         f = condition
         if f:
@@ -39,8 +38,8 @@ def conditional_caster(condition: Callable, spell: Callable) -> Callable:
 
 
 def spell_sequence(spells:	list[Callable]) -> Callable:
-    def spells_list(target: str, power: int) ->list[str]:
-        spellsResults :list[str] = []
+    def spells_list(target: str, power: int) -> list[str]:
+        spellsResults: list[str] = []
         for spell in spells:
             spellsResults.append(spell(target, power))
         return spellsResults
@@ -61,6 +60,7 @@ if __name__ == "__main__":
     mega_fireball = power_amplifier(fireball, power)
     print(f"Orginal: {power}", end=" ")
     print(f"Amplified {mega_fireball(test_target, 10)}")
+
     def condition(age: int) -> bool:
         return (age > 0)
     print("\ntesting conditional caster...")

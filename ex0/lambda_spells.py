@@ -37,7 +37,7 @@ if __name__ == "__main__":
     artifacts = [
             {'name': 'Crystal Orb', 'power': 85, 'type': 'accessory'},
             {'name': 'Fire Staff', 'power': 92, 'type': 'armor'},
-            #{'name': 'Storm Crown', 'power': 115, 'type': 'accessory'}
+            # {'name': 'Storm Crown', 'power': 115, 'type': 'accessory'}
         ]
     mages = [
         {'name': 'Storm', 'power': 62, 'element': 'lightning'},
@@ -49,22 +49,22 @@ if __name__ == "__main__":
     spells = ['fireball', 'heal', 'shield']
     result: list[dict] = artifact_sorter(artifacts)
     for i, artifact in enumerate(result):
-        print(f"{artifact['name']} ({artifact['power']}power)", end = " ")
+        print(f"{artifact['name']} ({artifact['power']}power)", end=" ")
         if i != len(artifact) - 1:
-            print("comes before", end = " ")
+            print("comes before", end=" ")
     print("\nTesting spell transformer...")
     spell: list[str] = spell_transformer(spells)
     for stared in spell:
-        print(stared, end = " ")
+        print(stared, end=" ")
     print()
     print("\ntesting the graeter power...")
-    greater_power :list[dict] = power_filter(mages, 65)
+    greater_power: list[dict] = power_filter(mages, 65)
     for mage in greater_power:
         print(f"{mage['name']} because the power is:{mage['power']}")
     print("\ntesting mage stats...")
     stats: dict = mage_stats(mages)
-    print (
-    f"the min of mages is {stats['min_power']}\n"
-    f"the max of mages is {stats['max_power']}\n"
-    f"the average of mages is {stats['avg_power']}"
+    print(
+        f"the min of mages is {stats['min_power']}\n"
+        f"the max of mages is {stats['max_power']}\n"
+        f"the average of mages is {stats['avg_power']}"
     )
